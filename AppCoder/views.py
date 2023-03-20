@@ -4,12 +4,25 @@ from django.http import HttpResponse
 
 
 
-# Create your views here.
 def cursos(request):
-    return render(request, "index.html")
+    all_cursos = Curso.objects.all()
+    context = {
+        "cursos": all_cursos
+    }
+    return render(request, "AppCoder/cursos.html", context = context)
 
+def crear_curso(request, nombre, camada):
+    save_curso = Curso(nombre = nombre, camada=camada)
+    save_curso.save()
+    context = {
+        "nombre": nombre
+    }
+    return render(request, "AppCoder/save_curso.html", context)
 def estudiantes(request):
-    pass
+    return render(request, "base.html")
 
 def profesores(request):
-    pass
+    return render(request, "base.html")
+
+def entregables(request):
+    return render(request, "base.html")
