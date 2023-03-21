@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
+<!--Creacion de formulario-->
 {% block contenido_que_cambia %}
-    <h1>El contenido ha sido modificado</h1>
-    {% if cursos %}
-        {% for curso in cursos %}
-            <p>Curso: {{ curso.nombre }}</p>
-            <p>Camada: {{ curso.camada }}</p>
-        {% endfor %}
-    {% else %}
-        <h1>No hay cursos en el momento</h1>
-    {% endif %}
+    <form action="{% url 'AppCoderCursos' %}" method="post">
+        <h1>Formulario - Agregar Curso</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Enviar">
+    </form>
 {% endblock %}
